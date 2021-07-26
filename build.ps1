@@ -1,8 +1,8 @@
 Clear-Host
 
 #Global variables
-$mainFile		= "retro"
-$executableName = "RETro"
+$mainFile		= "fant"
+$executableName = "FantASM"
 $fileExt		= ".asm"
 
 $debug			= $TRUE
