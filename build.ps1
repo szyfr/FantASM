@@ -60,7 +60,8 @@ if ($fileExt -eq ".asm") {
 	#Setting up variables for compilation
 	$src = "src\" + $mainFile + $fileExt
 	$exe = "" + $executableLocation + "\" + $executableName
-	$lib = "-Wall -lraylib -lm -lgcc -lpthread -lgdi32 -lwinmm -mwindows".Split(" ")
+	$lib = "-Wall -lraylib -lm -lgcc -lpthread -lgdi32 -lwinmm ".Split(" ")
+	#-mwindows
 
 	#Compiling
 	"...Compiling Program..."

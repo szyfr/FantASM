@@ -37,5 +37,7 @@ include 'core\update.inc'
 include 'core\draw.inc'
 include 'core\free.inc'
 
+include 'debugging\hex_string.inc'
+
 include 'data.inc'
 include 'imports.inc'

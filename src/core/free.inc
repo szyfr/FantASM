@@ -12,7 +12,7 @@ free_emu:
 	sub		rsp,	28h
 
 .free_rom:
-	mov		freePtr,				[rom]
+	mov		freePtr,				[memory_map]
 	call	MemFree
 
 .close_window:
