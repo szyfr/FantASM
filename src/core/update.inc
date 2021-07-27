@@ -39,16 +39,11 @@ update_emu:
 	cmp		keyResult,				1
 	jne		.exit
 
-
-;	mov		regAF,					[r_af]
-;	mov		regBC,					[r_bc]
-;	mov		regSP,					[r_sp]
-;	mov		regPC,					[r_pc]
-
-;	mov		[r_af],					regAF
-;	mov		[r_bc],					regBC
-;	mov		[r_sp],					regSP
-;	mov		[r_pc],					regPC
+.load_registers:
+	mov		regAF,					[r_af]
+	mov		regBC,					[r_bc]
+	mov		regSP,					[r_sp]
+	mov		regPC,					[r_pc]
 
 .read_next_byte:
 	mov		regPC,					[r_pc]
@@ -68,10 +63,10 @@ update_emu:
 	jne		.halt
 	add		regPC,					2
 
-	mov		regAF,					[r_af]
+;	mov		regAF,					[r_af]
 	inc		dataOffsetPtr
 	mov		regA,					[dataOffsetPtr]
-	mov		[r_af],					regAF
+;	mov		[r_af],					regAF
 
 	jmp		.debug_exit
 
@@ -87,10 +82,10 @@ update_emu:
 	jne		.stop
 	add		regPC,					2
 
-	mov		regBC,					[r_bc]
+;	mov		regBC,					[r_bc]
 	inc		dataOffsetPtr
 	mov		regB,					[dataOffsetPtr]
-	mov		[r_bc],					regBC
+;	mov		[r_bc],					regBC
 
 	jmp		.debug_exit
 
@@ -111,6 +106,11 @@ update_emu:
 
 .debug_exit:
 ;	int3
+	mov		[r_pc],					regPC
+.save_registers:
+	mov		[r_af],					regAF
+	mov		[r_bc],					regBC
+	mov		[r_sp],					regSP
 	mov		[r_pc],					regPC
 .exit:
 	add		rsp,	28h
