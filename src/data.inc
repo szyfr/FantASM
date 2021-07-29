@@ -19,7 +19,7 @@ section '.data' readable writeable
 	nop_text			db		'nop ',0
 	ldad_text			db		'ldad ',0
 	error_text			db		'   - ERROR: Unknown opcode at $'
-	error_pc			db		'  ',10,0
+	error_pc			db		'    ',10,0
 
 	;;=  Memory heaps
 	memory_map			dq		0

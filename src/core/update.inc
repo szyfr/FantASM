@@ -63,15 +63,12 @@ update_emu:
 	jne		.halt
 	add		regPC,					2
 
-;	mov		regAF,					[r_af]
 	inc		dataOffsetPtr
 	mov		regA,					[dataOffsetPtr]
-;	mov		[r_af],					regAF
 
 	jmp		.debug_exit
 
 .halt:
-	;;TODO: Halt
 	cmp		nextByte,				op_halt
 	jne		.ldbd
 
@@ -82,10 +79,8 @@ update_emu:
 	jne		.stop
 	add		regPC,					2
 
-;	mov		regBC,					[r_bc]
 	inc		dataOffsetPtr
 	mov		regB,					[dataOffsetPtr]
-;	mov		[r_bc],					regBC
 
 	jmp		.debug_exit
 
@@ -93,8 +88,11 @@ update_emu:
 
 .error:
 	lea		rcx,					[error_pc]
-	xor		rdx,					rdx
-	mov		dx,						regPC
+	add		rcx,					2
+	call	hex_converter
+
+	lea		rcx,					[error_pc]
+	shr		dx,						8
 	call	hex_converter
 
 	lea		rcx,					[error_text]
@@ -104,9 +102,11 @@ update_emu:
 
 	call	printf
 
+	mov		regPC,					[r_pc]
+	inc		regPC
+
 .debug_exit:
 ;	int3
-	mov		[r_pc],					regPC
 .save_registers:
 	mov		[r_af],					regAF
 	mov		[r_bc],					regBC

@@ -28,8 +28,8 @@ initialize_emu:
 	sub		rsp,	28h
 
 .initialize_screen:
-	mov		initWidth,				200
-	mov		initHeight,				400
+	mov		initWidth,				resolutionWidth
+	mov		initHeight,				resolutionHeight
 	lea		initTitlePtr,			[title]
 	call	InitWindow
 
